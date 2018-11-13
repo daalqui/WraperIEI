@@ -1,5 +1,6 @@
 package principal;
 
+import java.awt.event.HierarchyBoundsAdapter;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -82,16 +83,26 @@ public class FirefoxFNACController {
 			elementoActual = listaElementos.get(i);
 			navegacion = elementoActual.findElement(By.className("js-minifa-title"));
 			precio = elementoActual.findElement(By.className("userPrice"));
-			
-			if(elementoActual.findElement(By.className("stimuliOPC-flyer.stimuliOPC-flyer--GoodDeal")) != null) {
-				descuento = elementoActual.findElement(By.className("stimuliOPC-flyer.stimuliOPC-flyer--GoodDeal"));
+		
+			//Busco descuentos
+		try {
+				descuento = elementoActual.findElement(By.className("stimuliOPC"));
 				descuentoString = descuento.getText();
 			}
-
-				//autor = elementoActual.findElement(By.xpath("/html/body/div[4]/div/div[6]/ul/li["+j+"]"+"/div/div[2]/div/p[2]/a"));
+		catch(Exception e){
+			descuentoString = "no hay descuento";
+		}
+				
 			
-			
-			System.out.println(j + " " + navegacion.getText()+" "+precio.getText()+" "+ descuentoString );
+		// Busco autores
+		try {
+			autor = elementoActual.findElement(By.xpath("/html/body/div[4]/div/div[7]/ul/li["+i+"]/div/div[2]/div/p[2]/a"));
+			autorString = autor.getText();
+		}
+		catch(Exception e){
+		autorString = "no hay autor";
+	}
+			System.out.println(j + " " + navegacion.getText()+" "+precio.getText()+" "+ descuentoString + autorString );
 			j++;
 			
 		}
