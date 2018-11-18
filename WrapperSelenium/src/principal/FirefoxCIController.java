@@ -5,44 +5,40 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ChromeAmazonController {
+public class FirefoxCIController {
 	
 	private static WebDriver driver= null;
 
-	public ChromeAmazonController( String elemento_a_buscar) {
-		String exePath = "C:\\Users\\David\\Desktop\\UPV\\4º Informatica\\IEI\\Pract selenium\\chromedriver.exe";
-		System.setProperty("webdriver.chrome.driver", exePath);
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--start-maximized");
-		driver = new ChromeDriver(options);
-		driver.get("http://www.amazon.es/");
+	public FirefoxCIController( String elemento_a_buscar) {
+		String exePath = "C:\\Users\\David\\Desktop\\UPV\\4º Informatica\\IEI\\Pract selenium\\geckodriver.exe";
+		System.setProperty("webdriver.gecko.driver", exePath);
+		driver = new FirefoxDriver();
+		driver.get("https://www.elcorteingles.es");
+		driver.manage().window().maximize();
 		
-		/* Detecto los cookies
-		 * 
-		WebElement ventanaCookies = driver.findElement(By.xpath("/html/body/aside/div/button"));
-		if (ventanaCookies != null){
-			System.out.println("Detectado caja de cookies");
-			ventanaCookies.click();}
 		
-		*/
+		// Detecto los cookies
 		driver.manage().deleteAllCookies();
+	
 
-		
-		// Filtro para ver solo los libros
-		WebElement desplegable = driver.findElement(By.id("searchDropdownBox"));
-		desplegable.click();
-		WebElement opcionLibros = driver.findElement(By.cssSelector("#searchDropdownBox > option:nth-child(25)"));
-		opcionLibros.click();
-		
 		/* Busco en el buscador de la web */
-		WebElement cajaBusqueda = driver.findElement(By.id("twotabsearchtextbox"));
+		WebElement cajaBusqueda = driver.findElement(By.id("search-box"));
 		cajaBusqueda.sendKeys(elemento_a_buscar);
 		cajaBusqueda.submit();
+		try {
+			Thread.sleep(5000);
+		} 
+		catch(InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		// Filtro para ver solo los libros
+		WebElement opcionLibros = driver.findElement(By.xpath("//*[@title='Libros']"));
+		opcionLibros.click();
 		
 		try {
 			Thread.sleep(10000);
@@ -52,10 +48,10 @@ public class ChromeAmazonController {
 		}
 		
 		// Guardamos los elementos resultantes de la busqueda
-		List<WebElement> listaElementos = driver.findElements(By.xpath("//*[]"));
+		WebElement numeroLibros = driver.findElement(By.xpath("//*[@id=\"product-list-total\"]"));
 				
-		System.out.println("Número de elementos de la lista: " + listaElementos.size() );
-			
+		System.out.println("Número de elementos de la lista: " + numeroLibros.getText() );
+		/*
 		// Obtener cada uno de los artículos
 		WebElement elementoActual, navegacion, precio, descuento, autor;
 		String descuentoString = "null", autorString= "null";
@@ -70,6 +66,7 @@ public class ChromeAmazonController {
 			System.out.println(navegacion.getText()+"  "+precio.getText()+"  "+ autor.getText());
 				
 		}
+		*/
 	}
 
 }

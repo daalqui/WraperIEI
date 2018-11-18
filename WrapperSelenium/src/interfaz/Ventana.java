@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import principal.ChromeAmazonController;
+import principal.FirefoxCIController;
 import principal.FirefoxFNACController;
 
 import javax.swing.JLabel;
@@ -97,6 +98,9 @@ public class Ventana extends JFrame {
 				}
 				if(fnacBox.isSelected() == true) {
 					new FirefoxFNACController(tituloField.getText());
+				}
+				if (ciBox.isSelected() == true) {
+					new FirefoxCIController(tituloField.getText());
 				}
 				
 			}
