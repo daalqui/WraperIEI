@@ -92,8 +92,11 @@ public class Ventana extends JFrame {
 		JButton button = new JButton("Buscar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				GridLibros grid = new GridLibros();
+				grid.setVisible(true);
 				if( amazonBox.isSelected() == true) {
-					new ChromeAmazonController(tituloField.getText());
+					ChromeAmazonController chorme = new ChromeAmazonController(tituloField.getText());
+					//System.out.println("Ventana = " + chorme.getIntanciaLibro());
 				}
 				if(fnacBox.isSelected() == true) {
 					new FirefoxFNACController(tituloField.getText());

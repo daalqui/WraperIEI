@@ -1,6 +1,6 @@
 package principal;
 
-import java.awt.event.HierarchyBoundsAdapter;
+//import java.awt.event.HierarchyBoundsAdapter;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -13,10 +13,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class FirefoxFNACController {
 	
 	private static WebDriver driver= null;
-	
+	private InstanciaLibro instanciaLibro = new InstanciaLibro();
 	
 	public FirefoxFNACController(String elemento_a_buscar) {
-		String exePath = "C:\\Users\\David\\Desktop\\UPV\\4º Informatica\\IEI\\Pract selenium\\geckodriver.exe";
+		String exePath = "C:\\Users\\albert\\software\\selenium_drivers\\geckodriver.exe";
 		System.setProperty("webdriver.gecko.driver", exePath);
 		driver = new FirefoxDriver();
 		driver.get("http://www.fnac.es");
@@ -71,6 +71,8 @@ public class FirefoxFNACController {
 		// Guardamos los elementos resultantes de la busqueda
 		List<WebElement> listaElementos = driver.findElements(By.xpath("//*[contains(@class, 'Article-itemGroup')]"));
 		
+		
+		
 		System.out.println("Número de elementos de la lista: " + listaElementos.size() );
 	
 		// Obtener cada uno de los artículos
@@ -113,6 +115,21 @@ public class FirefoxFNACController {
 		catch(InterruptedException e) {
 			e.printStackTrace();
 		}
+		
+		/*instanciaLibro.setDescunetoLibro(Double.parseDouble(descuento.getText()));
+		instanciaLibro.setNombreAutorLibro(autor.getText());
+		instanciaLibro.setPrecioLibro(Double.parseDouble(precio.getText()));
+		instanciaLibro.setSitio("Fnac");
+		instanciaLibro.setTituloLibro("titulo desconocido");
+		//navegacion, precio, descuento, autor;*/
+	}
+	
+	public InstanciaLibro getInstanciaLibro() {
+		return instanciaLibro;
+	}
+	
+	private void inicializarIntaniaLibro(WebElement element) {
+		
 	}
 
 }

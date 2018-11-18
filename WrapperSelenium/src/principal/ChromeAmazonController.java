@@ -13,9 +13,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ChromeAmazonController {
 	
 	private static WebDriver driver= null;
-
+	
+	private InstanciaLibro instancia = new InstanciaLibro();
+	
 	public ChromeAmazonController( String elemento_a_buscar) {
-		String exePath = "C:\\Users\\David\\Desktop\\UPV\\4º Informatica\\IEI\\Pract selenium\\chromedriver.exe";
+				
+		String exePath = "C:\\Users\\albert\\software\\selenium_drivers\\chromedriver.exe";
 		System.setProperty("webdriver.chrome.driver", exePath);
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--start-maximized");
@@ -53,7 +56,8 @@ public class ChromeAmazonController {
 		
 		// Guardamos los elementos resultantes de la busqueda
 		List<WebElement> listaElementos = driver.findElements(By.id("s-results-list-atf"));
-				
+		
+		
 		System.out.println("Número de elementos de la lista: " + listaElementos.size() );
 			
 		// Obtener cada uno de los artículos
@@ -71,5 +75,21 @@ public class ChromeAmazonController {
 				
 		}
 	}
+	
+	public InstanciaLibro getIntanciaLibro() {
+		return instancia;
+	}
+	
+	/*private void inicializarIntaniaLibro(WebElement element) {
+		WebElement navegacion, precio, descuento, autor;
+		navegacion = element.findElement(By.xpath("//*[@id=\"result_"+0+"\"]/div/div/div/div[2]/div[1]/div[1]/a/h2"));
+		precio = element.findElement(By.xpath("//*[@id=\"result_"+0+"\"]/div/div/div/div[2]/div[2]/div[1]/div[2]/a/span[2]"));
+		autor = element.findElement(By.xpath("//*[@id=\"result_"+0+"\"]/div/div/div/div[2]/div[1]/div[2]"));
+		instancia.setDescunetoLibro(0.0);
+		instancia.setNombreAutorLibro(autor.getText());
+		instancia.setPrecioLibro(Double.parseDouble(precio.getText()));
+		instancia.setSitio("Amazon");
+		instancia.setTituloLibro("");
+	}*/
 
 }
