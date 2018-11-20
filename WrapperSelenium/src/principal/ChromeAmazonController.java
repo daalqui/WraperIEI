@@ -3,6 +3,8 @@ package principal;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.naming.directory.DirContext;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -56,9 +58,11 @@ public class ChromeAmazonController {
 		
 		// Guardamos los elementos resultantes de la busqueda
 		//List<WebElement> listaElementos = driver.findElements(By.xpath("//*[]"));
-		List<WebElement> listaElementos = driver.findElements(By.id("s-results-list-atf"));
+		//List<WebElement> listaElementos = driver.findElements(By.id("s-results-list-atf"));
+		List<WebElement> listaElementos = driver.findElements(By.xpath("//*[contains(@class, 's-result-item celwidget')]"));
+		System.out.println("elementos = " + listaElementos.toString());
 		System.out.println("Número de elementos de la lista: " + listaElementos.size() );	
-		// Obtener cada uno de los artículos
+		/*// Obtener cada uno de los artículos
 		WebElement elementoActual, navegacion, precio, descuento, autor;
 		String descuentoString = "null", autorString= "null";
 		int j=1;
@@ -71,7 +75,7 @@ public class ChromeAmazonController {
 			autor = elementoActual.findElement(By.xpath("//*[@id=\"result_"+i+"\"]/div/div/div/div[2]/div[1]/div[2]"));
 			System.out.println(navegacion.getText()+"  "+precio.getText()+"  "+ autor.getText());
 				
-		}
+		}*/
 		
 		GridLibros gridLibros = new GridLibros(getInstanciaLibro(listaElementos, 0));
 		gridLibros.setVisible(true);
