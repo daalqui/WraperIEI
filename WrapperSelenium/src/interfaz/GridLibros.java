@@ -21,7 +21,9 @@ public class GridLibros extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GridLibros frame = new GridLibros();
+					InstanciaLibro elQuijote = new InstanciaLibro("Amazon", "El quijote", "Miguel de Cervantes", 30.0, 30.0);
+					InstanciaLibro lib2 = new InstanciaLibro("","","",null,null);
+					GridLibros frame = new GridLibros(elQuijote);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,7 +35,7 @@ public class GridLibros extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GridLibros() {
+	public GridLibros(InstanciaLibro libro) {
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -41,8 +43,8 @@ public class GridLibros extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		//this.table();
-		InstanciaLibro elQuijote = new InstanciaLibro("Amazon", "El quijote", "Miguel de Cervantes", 30.0, 30.0);
-		JTable tabla = construirTabla(elQuijote);
+		
+		JTable tabla = construirTabla(libro);
 		contentPane.add(tabla);
 		
 	}

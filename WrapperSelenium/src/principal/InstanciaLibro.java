@@ -74,12 +74,43 @@ public class InstanciaLibro {
 	
 	public Object[] toArray() {
 		Object[] res = new Object[5];
-		res[0] = this.sitio;
+		/*res[0] = this.sitio;
 		res[1] = this.tituloLibro;
 		res[2] = this.nombreAutorLibro;
 		res[3] = this.precioLibro;
-		res[4] = this.descunetoLibro + " %";
-		//{"Amazon", "El quijote", "Miguel de Cervantes", 12, "30 %"}
+		res[4] = this.descunetoLibro + " %";*/
+		
+		res[0] = tranformarAtributoEnCelda(this.sitio);
+		res[1] = tranformarAtributoEnCelda(this.tituloLibro);
+		res[2] = tranformarAtributoEnCelda(this.nombreAutorLibro);
+		res[3] = tranformarAtributoEnCelda(this.precioLibro);
+		res[4] = tranformarAtributoDescuentoEnCelda(this.descunetoLibro);
+		
 		return res;
 	}
+	
+	private static String tranformarAtributoEnCelda(String atributo) {
+		if(atributo != null && !atributo.equals("")) {
+			return atributo;
+		} else {
+			return "X";
+		}
+	}
+	
+	private static String tranformarAtributoEnCelda(Double atributo) {
+		if(atributo != null) {
+			return atributo.toString();
+		} else {
+			return "X";
+		}
+	}
+	
+	private static String tranformarAtributoDescuentoEnCelda(Double atributo) {
+		if(atributo != null) {
+			return atributo.toString() + " %";
+		} else {
+			return "X";
+		}
+	}
+	
 }
