@@ -1,6 +1,8 @@
 package principal;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.naming.directory.DirContext;
@@ -60,7 +62,6 @@ public class ChromeAmazonController {
 		//List<WebElement> listaElementos = driver.findElements(By.xpath("//*[]"));
 		//List<WebElement> listaElementos = driver.findElements(By.id("s-results-list-atf"));
 		List<WebElement> listaElementos = driver.findElements(By.xpath("//*[contains(@class, 's-result-item celwidget')]"));
-		System.out.println("elementos = " + listaElementos.toString());
 		System.out.println("Número de elementos de la lista: " + listaElementos.size() );	
 		/*// Obtener cada uno de los artículos
 		WebElement elementoActual, navegacion, precio, descuento, autor;
@@ -76,10 +77,19 @@ public class ChromeAmazonController {
 			System.out.println(navegacion.getText()+"  "+precio.getText()+"  "+ autor.getText());
 				
 		}*/
-		
-		GridLibros gridLibros = new GridLibros(getInstanciaLibro(listaElementos, 0));
+		GridLibros gridLibros = new GridLibros(getInstanciaLibros(listaElementos), null);
 		gridLibros.setVisible(true);
 				
+	}
+	
+	private static List<InstanciaLibro> getInstanciaLibros(List<WebElement> listaElementos) {
+		List<InstanciaLibro> res = new ArrayList<InstanciaLibro>();
+		for(int i = 0; i < listaElementos.size(); i++) {
+			InstanciaLibro instanciaLibroAcutal = getInstanciaLibro(listaElementos, i);
+			res.add(instanciaLibroAcutal);
+		}
+		
+		return res;
 	}
 	
 	private static InstanciaLibro getInstanciaLibro(List<WebElement> listaElementos, int num_elemento) {

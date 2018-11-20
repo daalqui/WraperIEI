@@ -2,6 +2,8 @@ package interfaz;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,8 +25,8 @@ public class GridLibros extends JFrame {
 				try {
 					InstanciaLibro elQuijote = new InstanciaLibro("Amazon", "El quijote", "Miguel de Cervantes", 30.0, 30.0);
 					InstanciaLibro lib2 = new InstanciaLibro("","","",null,null);
-					GridLibros frame = new GridLibros(elQuijote);
-					frame.setVisible(true);
+					//GridLibros frame = new GridLibros(elQuijote);
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -35,7 +37,7 @@ public class GridLibros extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GridLibros(InstanciaLibro libro) {
+	public GridLibros(List<InstanciaLibro> libros, InstanciaLibro libro) {
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -44,7 +46,8 @@ public class GridLibros extends JFrame {
 		setContentPane(contentPane);
 		//this.table();
 		
-		JTable tabla = construirTabla(libro);
+		//JTable tabla = construirTabla(libro);
+		JTable tabla = construirTabla(libros);
 		contentPane.add(tabla);
 		
 	}
@@ -72,6 +75,23 @@ public class GridLibros extends JFrame {
 	    data[1] = columna;
 	    JTable table = new JTable(data, columns);
 	    return table;
+	}
+	
+	private static JTable construirTabla(List<InstanciaLibro> libros) {
+		String[] columns = getNombreColumnas();
+		Object[][] data = new Object[libros.size()+1][5];
+		data[0] = getPrimeraColumna();
+		
+		Iterator<InstanciaLibro> librosIterable = libros.iterator();
+		int i = 1;
+		while (librosIterable.hasNext()) {
+			InstanciaLibro libroActual = librosIterable.next();
+			data[i] = libroActual.toArray();
+			i++;
+		}
+		
+		JTable res = new JTable(data, columns);
+		return res;
 	}
 	
 	private static String[] getNombreColumnas() {
