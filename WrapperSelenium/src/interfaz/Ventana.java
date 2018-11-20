@@ -94,13 +94,13 @@ public class Ventana extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if( amazonBox.isSelected() == true) {
-					new ChromeAmazonController(tituloField.getText());
+					new ChromeAmazonController(tituloField.getText() +" "+ autorField.getText() );
 				}
 				if(fnacBox.isSelected() == true) {
-					new FirefoxFNACController(tituloField.getText());
+					new FirefoxFNACController(tituloField.getText() +" "+ autorField.getText());
 				}
 				if (ciBox.isSelected() == true) {
-					new FirefoxCIController(tituloField.getText());
+					new FirefoxCIController(tituloField.getText() +" "+ autorField.getText());
 				}
 				
 			}
