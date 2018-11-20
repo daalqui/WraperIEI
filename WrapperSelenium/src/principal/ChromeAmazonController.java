@@ -18,7 +18,7 @@ public class ChromeAmazonController {
 	private static WebDriver driver= null;
 
 	public ChromeAmazonController( String elemento_a_buscar) {
-		String exePath = "C:\\Users\\albert\\software\\selenium_drivers\\chromedriver.exe";
+		String exePath = "C:\\Users\\David\\Desktop\\UPV\\4º Informatica\\IEI\\Pract selenium\\chromedriver.exe";
 		System.setProperty("webdriver.chrome.driver", exePath);
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--start-maximized");
