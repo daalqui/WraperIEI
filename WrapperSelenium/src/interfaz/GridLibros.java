@@ -23,7 +23,7 @@ public class GridLibros extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InstanciaLibro elQuijote = new InstanciaLibro("Amazon", "El quijote", "Miguel de Cervantes", 30.0, 30.0);
+					InstanciaLibro elQuijote = new InstanciaLibro("Amazon", "El quijote", "Miguel de Cervantes", 30.0, "30.0");
 					InstanciaLibro lib2 = new InstanciaLibro("","","",null,null);
 					//GridLibros frame = new GridLibros(elQuijote);
 					//frame.setVisible(true);

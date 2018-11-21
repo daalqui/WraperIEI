@@ -91,7 +91,7 @@ public class FirefoxFNACController {
                 descuentoString = descuento.getText();
             }
         catch(Exception e){
-            descuentoString = "no hay descuento";
+            descuentoString = null;
         }
                 
             
@@ -101,17 +101,23 @@ public class FirefoxFNACController {
             autorString = autor.getText();
         }
         catch(Exception e){
-        autorString = "no hay autor";
+        autorString = null;
         }
         	String precioString = precio.getText();
         	InstanciaLibro instanciaLibro = new InstanciaLibro();
+        	System.out.println(precioString);
+        	String precioStringFormateado = precioString.substring(0,precioString.length()-1);
+        	System.out.println(precioStringFormateado);
+        	Double precioLibro = Double.parseDouble(
+        			ConvertidorDeString.formatearStirngDouble(precioStringFormateado));
+        	instanciaLibro.setPrecioLibro(precioLibro);
         	//String precioStringFormateado = precioString.substring(0,precioString.length()-1);
         	/*Double descuentoLibro = Double.parseDouble(
                 	ConvertidorDeString.formatearStirngDouble(precioStringFormateado));*/
         	//System.out.println(precioString.substring(0, descuentoString.length()-1));
         	/*Double descuentoLibro = Double.parseDouble(
         	ConvertidorDeString.formatearStirngDouble(precioString.substring(0, descuentoString.length()-1)));*/
-        	//instanciaLibro.setDescunetoLibro(descuentoLibro);
+        	instanciaLibro.setDescunetoLibro(descuentoString);
         	instanciaLibro.setNombreAutorLibro(autorString);
         	//String precioStringFormateado = precioString.substring(0,precioString.length()-1);
         	/*Double precioLibro = Double.parseDouble(
