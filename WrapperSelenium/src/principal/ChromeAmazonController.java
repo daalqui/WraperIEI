@@ -94,18 +94,21 @@ public class ChromeAmazonController {
 	
 	private static InstanciaLibro getInstanciaLibro(List<WebElement> listaElementos, int num_elemento) {
 		WebElement navegacion, precio, autor;
+		String navegacionString, precioString, autorString;
 		WebElement elemento = listaElementos.get(num_elemento);
 		navegacion = elemento.findElement(By.xpath("//*[@id=\"result_"+num_elemento+"\"]/div/div/div/div[2]/div[1]/div[1]/a/h2"));
 		try {
 		precio = elemento.findElement(By.xpath("//*[@id=\"result_"+num_elemento+"\"]/div/div/div/div[2]/div[2]/div[1]/div[2]/a/span[2]"));
+		precioString = precio.getText();
 		} catch(Exception ex) {
-			precio = null;
+			precioString = null;
+			
 		}
 		autor = elemento.findElement(By.xpath("//*[@id=\"result_"+num_elemento+"\"]/div/div/div/div[2]/div[1]/div[2]"));
 		
 		
 		
-		return new InstanciaLibro("Amazon", navegacion.getText(), autor.getText(), convertirPrecioADouble(precio.getText()), null);
+		return new InstanciaLibro("Amazon", navegacion.getText(), autor.getText(), precioString, null);
 	}
 	
 	private static Double convertirPrecioADouble(String precio) {
