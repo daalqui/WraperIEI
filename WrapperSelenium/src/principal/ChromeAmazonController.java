@@ -96,7 +96,11 @@ public class ChromeAmazonController {
 		WebElement navegacion, precio, autor;
 		WebElement elemento = listaElementos.get(num_elemento);
 		navegacion = elemento.findElement(By.xpath("//*[@id=\"result_"+num_elemento+"\"]/div/div/div/div[2]/div[1]/div[1]/a/h2"));
+		try {
 		precio = elemento.findElement(By.xpath("//*[@id=\"result_"+num_elemento+"\"]/div/div/div/div[2]/div[2]/div[1]/div[2]/a/span[2]"));
+		} catch(Exception ex) {
+			precio = null;
+		}
 		autor = elemento.findElement(By.xpath("//*[@id=\"result_"+num_elemento+"\"]/div/div/div/div[2]/div[1]/div[2]"));
 		
 		

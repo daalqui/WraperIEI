@@ -105,9 +105,9 @@ public class FirefoxFNACController {
         }
         	String precioString = precio.getText();
         	InstanciaLibro instanciaLibro = new InstanciaLibro();
-        	System.out.println(precioString);
+        	//System.out.println(precioString);
         	String precioStringFormateado = precioString.substring(0,precioString.length()-1);
-        	System.out.println(precioStringFormateado);
+        	//System.out.println(precioStringFormateado);
         	Double precioLibro = Double.parseDouble(
         			ConvertidorDeString.formatearStirngDouble(precioStringFormateado));
         	instanciaLibro.setPrecioLibro(precioLibro);
