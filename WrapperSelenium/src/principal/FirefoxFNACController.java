@@ -1,6 +1,7 @@
 package principal;
 
 import java.awt.event.HierarchyBoundsAdapter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -11,6 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import interfaz.GridLibros;
+
 public class FirefoxFNACController {
     
     private static WebDriver driver= null;
@@ -18,9 +21,10 @@ public class FirefoxFNACController {
     private WebElement botonSiguiente;
 
     
+    
     public  FirefoxFNACController(String elemento_a_buscar) {
-        
-        String exePath = "C:\\Users\\David\\Desktop\\UPV\\4º Informatica\\IEI\\Pract selenium\\geckodriver.exe";
+        List<InstanciaLibro> libros = new ArrayList<InstanciaLibro>();
+        String exePath = "C:\\Users\\albert\\software\\selenium_drivers\\geckodriver.exe";
         System.setProperty("webdriver.gecko.driver", exePath);
         driver = new FirefoxDriver();
         driver.get("http://www.fnac.es");
@@ -64,7 +68,7 @@ public class FirefoxFNACController {
         
         // Guardamos los elementos resultantes de la busqueda
         do{
-            
+           
         waiting.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*[contains(@class, 'Article-itemGroup')]")));
         List<WebElement> listaElementos = driver.findElements(By.xpath("//*[contains(@class, 'Article-itemGroup')]"));
         
@@ -99,11 +103,35 @@ public class FirefoxFNACController {
         catch(Exception e){
         autorString = "no hay autor";
         }
-            
+        	String precioString = precio.getText();
+        	InstanciaLibro instanciaLibro = new InstanciaLibro();
+        	//String precioStringFormateado = precioString.substring(0,precioString.length()-1);
+        	/*Double descuentoLibro = Double.parseDouble(
+                	ConvertidorDeString.formatearStirngDouble(precioStringFormateado));*/
+        	//System.out.println(precioString.substring(0, descuentoString.length()-1));
+        	/*Double descuentoLibro = Double.parseDouble(
+        	ConvertidorDeString.formatearStirngDouble(precioString.substring(0, descuentoString.length()-1)));*/
+        	//instanciaLibro.setDescunetoLibro(descuentoLibro);
+        	instanciaLibro.setNombreAutorLibro(autorString);
+        	//String precioStringFormateado = precioString.substring(0,precioString.length()-1);
+        	/*Double precioLibro = Double.parseDouble(
+                	ConvertidorDeString.formatearStirngDouble(precioStringFormateado));*/
+        	/*Double precioLibro = Double.parseDouble(
+        	ConvertidorDeString.formatearStirngDouble(precioString.substring(0, precioString.length())));*/
+        	//instanciaLibro.setPrecioLibro(precioLibro);
+        	instanciaLibro.setSitio("Fnac");
+        	instanciaLibro.setTituloLibro(navegacion.getText());
+        	libros.add(instanciaLibro);
+            /*libros.add(new InstanciaLibro("Fnac", navegacion.getText(), autorString,
+            		Double.parseDouble(precioString.substring(0, precioString.length())), 
+            		Double.parseDouble(precioString.substring(0, descuentoString.length()))));*/
             System.out.println(j + " " + navegacion.getText()+" "+precio.getText()+" "+ descuentoString + autorString );
             j++;
-            
+            /*String sitio, String tituloLibro, String nombreAutorLibro, Double precioLibro,
+			Double descunetoLibro*/
         }
+        
+       
         //PROVISIONAL HASTA PONER LA ESPERA
         try {Thread.sleep(5000);} 
         catch(InterruptedException e) {e.printStackTrace();}
@@ -122,7 +150,12 @@ public class FirefoxFNACController {
         }
         while(botonSiguiente != null);
         driver.close();
+        
+        GridLibros grid = new GridLibros(libros, null);
+        grid.setVisible(true);
     }
+    
+
 
 
 

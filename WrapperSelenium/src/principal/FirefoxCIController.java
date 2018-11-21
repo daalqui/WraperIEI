@@ -9,6 +9,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import interfaz.GridLibros;
+
 public class FirefoxCIController {
     
     private static WebDriver driver= null;
@@ -18,7 +20,7 @@ public class FirefoxCIController {
     String descuentoString = "null", autorString= "null";
 
     public FirefoxCIController( String elemento_a_buscar) {
-        String exePath = "C:\\Users\\David\\Desktop\\UPV\\4º Informatica\\IEI\\Pract selenium\\geckodriver.exe";
+        String exePath = "C:\\Users\\albert\\software\\selenium_drivers\\geckodriver.exe";
         System.setProperty("webdriver.gecko.driver", exePath);
         driver = new FirefoxDriver();
         driver.get("https://www.elcorteingles.es");
@@ -85,6 +87,7 @@ public class FirefoxCIController {
             
             System.out.println(i + ": "+titulo.getText()+"  "+precio.getText()+"  "+ autor.getText());  
         }
+       
         try {
             botonSiguiente = driver.findElement(By.xpath("//*[@rel='next']"));
             if (botonSiguiente != null) botonSiguiente.click();

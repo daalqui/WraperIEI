@@ -22,7 +22,7 @@ public class ChromeAmazonController {
 	private static WebDriver driver= null;
 
 	public ChromeAmazonController( String elemento_a_buscar) {
-		String exePath = "C:\\Users\\David\\Desktop\\UPV\\4º Informatica\\IEI\\Pract selenium\\chromedriver.exe";
+		String exePath = "C:\\Users\\albert\\software\\selenium_drivers\\chromedriver.exe";
 		System.setProperty("webdriver.chrome.driver", exePath);
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--start-maximized");
@@ -107,13 +107,8 @@ public class ChromeAmazonController {
 	private static Double convertirPrecioADouble(String precio) {
 		String[] split = precio.split(" ");
 		//String precioStr = split[1].trim();
-		String precioStr = formatearStirngDouble(split[1]);
+		String precioStr = ConvertidorDeString.formatearStirngDouble(split[1]);
 		Double res = Double.parseDouble(precioStr);
-		return res;
-	}
-	private static String formatearStirngDouble(String precio) {
-		String[] split = precio.split(",");
-		String res = split[0] + "." + split[1];
 		return res;
 	}
 }

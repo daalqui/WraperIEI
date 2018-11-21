@@ -97,9 +97,11 @@ public class Ventana extends JFrame {
 					new ChromeAmazonController(tituloField.getText() +" "+ autorField.getText() );
 				}
 				if(fnacBox.isSelected() == true) {
+					System.out.println("fnacBox.isSelected() == true");
 					new FirefoxFNACController(tituloField.getText() +" "+ autorField.getText());
 				}
 				if (ciBox.isSelected() == true) {
+					System.out.println("ciBox.isSelected() == true");
 					new FirefoxCIController(tituloField.getText() +" "+ autorField.getText());
 				}
 				
