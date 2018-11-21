@@ -7,7 +7,7 @@ public class InstanciaLibro {
 	String tituloLibro;
 	String nombreAutorLibro;
 	Double precioLibro;
-	Double descunetoLibro;
+	String descunetoLibro;
 	
 	public InstanciaLibro() {
 		this.sitio = null;
@@ -18,7 +18,7 @@ public class InstanciaLibro {
 	}
 	
 	public InstanciaLibro(String sitio, String tituloLibro, String nombreAutorLibro, Double precioLibro,
-			Double descunetoLibro) {
+			String descunetoLibro) {
 		this.sitio = sitio;
 		this.tituloLibro = tituloLibro;
 		this.nombreAutorLibro = nombreAutorLibro;
@@ -58,11 +58,11 @@ public class InstanciaLibro {
 		this.precioLibro = precioLibro;
 	}
 
-	public Double getDescunetoLibro() {
+	public String getDescunetoLibro() {
 		return descunetoLibro;
 	}
 
-	public void setDescunetoLibro(Double descunetoLibro) {
+	public void setDescunetoLibro(String descunetoLibro) {
 		this.descunetoLibro = descunetoLibro;
 	}
 
@@ -84,7 +84,7 @@ public class InstanciaLibro {
 		res[1] = tranformarAtributoEnCelda(this.tituloLibro);
 		res[2] = tranformarAtributoEnCelda(this.nombreAutorLibro);
 		res[3] = tranformarAtributoEnCelda(this.precioLibro);
-		res[4] = tranformarAtributoDescuentoEnCelda(this.descunetoLibro);
+		res[4] = tranformarAtributoEnCelda(this.descunetoLibro);
 		
 		return res;
 	}
